@@ -1,0 +1,2 @@
+# 2122_3AHITN_Scrum_jhuber_ikovacev_criedler_lalekov_mfian
+Schiffe versenken
