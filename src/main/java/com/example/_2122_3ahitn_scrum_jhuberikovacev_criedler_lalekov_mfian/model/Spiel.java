@@ -6,12 +6,6 @@ public class Spiel {
     short spielerAmZug;
     boolean sieg;
 
-    protected void schuss(int posA, int posB){
-
-    }
-    protected void platziereSchiff(int posA, int posB ){
-
-    }
     protected boolean checkSieg(){
         return sieg;
     }

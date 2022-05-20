@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 
 public class SchiffeversenkenController {
 
+
     @FXML
     private GridPane gp;
     @FXML

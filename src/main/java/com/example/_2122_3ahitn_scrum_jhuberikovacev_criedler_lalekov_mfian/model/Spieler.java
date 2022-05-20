@@ -7,4 +7,17 @@ public class Spieler {
     public Spieler(String name) {
         this.name = name;
     }
+
+    public boolean guess(char row, int col, Spieler sp){
+        boolean checkhit=false;
+
+
+
+        return checkhit;
+    }
+
+    public boolean placeShip(char row, int col, boolean direction){
+        boolean placed = true;
+return placed;
+    }
 }
