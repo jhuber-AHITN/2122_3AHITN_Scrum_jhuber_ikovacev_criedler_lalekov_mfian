@@ -1,12 +1,12 @@
 # 19.05.2022
-Aufgaben verteilt:
-Riedler: Namen eingeben, Kovacevic: Spielfeld anzeigen, Fian: Klassendiagramm, Alekov: krank
-Überprüft ob Programm lauffähig ist wenn man es sich vom Github cloned. 
-Trello überarbeitet(vor allem Aufgabenzuteilung)
+<p>Aufgaben verteilt:</p>
+<p>Riedler: Namen eingeben, Kovacevic: Spielfeld anzeigen, Fian: Klassendiagramm, Alekov: krank</p>
+<p>Überprüft ob Programm lauffähig ist wenn man es sich vom Github cloned.</p>
+<p>Trello überarbeitet(vor allem Aufgabenzuteilung)</p>
 
 # 20.05.2022
-Aufgaben verteilt: 
-Riedler: Schiffe platzieren, Kovacevic: Spielfeld anzeigen fertig stellen, Fian: Klassendiagramm, Alekov: krank
-Mit Riedler besprochen was man an der Nameneingabe noch verbessern kann.
-Geschaut ob Fian wirklich zumindest ein wenig arbeitet.
-Gitignore überprüft
+<p>Aufgaben verteilt: </p>
+<p>Riedler: Schiffe platzieren, Kovacevic: Spielfeld anzeigen fertig stellen, Fian: Klassendiagramm, Alekov: krank</p>
+<p>Mit Riedler besprochen was man an der Nameneingabe noch verbessern kann.</p>
+<p>Geschaut ob Fian wirklich zumindest ein wenig arbeitet.</p>
+<p>Gitignore überprüft</p>
