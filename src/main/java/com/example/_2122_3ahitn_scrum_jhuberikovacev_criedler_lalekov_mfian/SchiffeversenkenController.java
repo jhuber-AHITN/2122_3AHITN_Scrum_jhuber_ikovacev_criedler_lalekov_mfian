@@ -6,16 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
 public class SchiffeversenkenController {
-    int[][] fieldArray ={{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}
-            ,{0,0,0,0,0,0,0,0,0,0}};
+
 
 
 
@@ -33,11 +24,4 @@ public class SchiffeversenkenController {
         }
     }
 
-    public static void lastShipPlaced(){
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-
-            }
-        }
-    }
 }
