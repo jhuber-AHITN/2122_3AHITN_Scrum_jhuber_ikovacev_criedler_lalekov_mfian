@@ -24,11 +24,24 @@ public class Spielfeld {
                 }
             }
         }
+        placeRandom();
+    }
+    public void placeRandom(){
+        field[0][0]=SHIP;
+        field[0][1]=SHIP;
+        field[0][2]=SHIP;
+
+        field[6][8]=SHIP;
+        field[7][8]=SHIP;
+        field[8][8]=SHIP;
+        field[9][8]=SHIP;
+        field[9][9]=SHIP;
     }
 
     public int[][] getField() {
         return field;
     }
+
 
     public void setField(int[][] field) {
         this.field = field;

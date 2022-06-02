@@ -1,5 +1,6 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian;
 
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spiel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ public class HelloController {
     public Button createButton;
     public String[] playername = new String[2];
     public int createcounter = 0;
+    public Spiel spiel;
 
 
     public void oncreateclick() throws IOException {

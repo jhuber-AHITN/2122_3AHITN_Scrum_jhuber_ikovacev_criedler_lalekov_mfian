@@ -4,20 +4,26 @@ public class Spieler {
     protected String name;
     private Spielfeld spielfeld;
     public static final boolean LINKS = true;
-
     public static final boolean OBEN = false;
 
-    // array fuer Schiffskins
+    public Spielfeld getSpielfeld() {
+        return spielfeld;
+    }
+// array fuer Schiffskins
 
     public Spieler(String name) {
         this.name = name;
+        spielfeld=new Spielfeld();
     }
 
-    public boolean guess(char row, int col, Spieler sp) {
-        boolean checkhit = false;
-        if(sp.spielfeld.getField()[row][col]==1){
-            sp.spielfeld.getField()[row][col]=2;
-            checkhit=true;
+    public int guess(int row, int col, Spieler sp) {
+        int checkhit = 0;
+        if(sp.spielfeld.getField()[row][col]==Spielfeld.SHIP){
+            sp.spielfeld.getField()[row][col]=Spielfeld.HIT;
+            checkhit=Spielfeld.HIT;
+        } else if (sp.spielfeld.getField()[row][col]==Spielfeld.EMPTY){
+            sp.spielfeld.getField()[row][col]=Spielfeld.MISSED;
+            checkhit=Spielfeld.MISSED;
         }
 
        return checkhit;
