@@ -13,10 +13,11 @@ public class Spieler {
         this.name = name;
     }
 
+
     public boolean guess(char row, int col, Spieler sp) {
         boolean checkhit = false;
         if(sp.spielfeld.getField()[row][col]==1){
-            sp.spielfeld.getField()[row][col]=2;
+            sp.spielfeld.getField()[row][col]=3;
             checkhit=true;
         }
 
@@ -32,25 +33,23 @@ public class Spieler {
      * @param direction
      * @return
      */
-    public boolean placeShip(char row, int col, int length, boolean direction) {
-        boolean placed = true;
+    public void placeShip(char row, int col, int length, boolean direction) {
         if (direction == OBEN) {
             for (int i = row; i < row + length; i++) {
-                if (spielfeld.getField()[row][i] == 0) {
-                    spielfeld.getField()[row][i] = 1;
-                } else {
-                    placed = false;
+                try {
+                    spielfeld.setShip(row, i);
+                }catch (Exception e){
+
                 }
             }
         } else {
             for (int i = col; i < col + length; i++) {
-                if (spielfeld.getField()[i][col] == 0) {
-                    spielfeld.getField()[i][col] = 1;
-                } else {
-                    placed = false;
+                try {
+                    spielfeld.setShip(row, i);
+                }catch (Exception e){
+
                 }
             }
         }
-        return placed;
     }
 }

@@ -35,17 +35,23 @@ public class Spielfeld {
     }
 
     public boolean checkWin() {
-        boolean checkwin=true;
+        boolean checkwin = true;
 
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                if (field[i][j]==1){
-                    checkwin=false;
+                if (field[i][j] == 1) {
+                    checkwin = false;
                 }
             }
 
         }
 
         return checkwin;
+    }
+
+    public void setShip(char row, int i) {
+        if (field[row][i] == EMPTY) {
+            field[row][i] = SHIP;
+        }
     }
 }
