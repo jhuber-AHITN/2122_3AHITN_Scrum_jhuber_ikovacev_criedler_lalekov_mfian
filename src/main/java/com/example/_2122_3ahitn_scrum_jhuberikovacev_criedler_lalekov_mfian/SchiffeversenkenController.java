@@ -18,6 +18,7 @@ public class SchiffeversenkenController {
             ,{0,0,0,0,0,0,0,0,0,0}};
 
 
+
     @FXML
     private GridPane gp;
     @FXML
