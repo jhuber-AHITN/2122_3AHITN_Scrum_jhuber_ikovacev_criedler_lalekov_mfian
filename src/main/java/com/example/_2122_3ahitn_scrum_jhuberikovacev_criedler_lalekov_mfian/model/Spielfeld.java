@@ -16,10 +16,10 @@ public class Spielfeld {
         field = new int[ROWS][COLS];
     }
 
-    public void fillWater(){
+    public void fillWater() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                if (field[i][j]!=HIT){
+                if (field[i][j] != HIT) {
                     field[i][j] = EMPTY;
                 }
             }
@@ -45,5 +45,20 @@ public class Spielfeld {
 
     public void setField(int[][] field) {
         this.field = field;
+    }
+
+    public boolean checkWin() {
+        boolean checkwin=true;
+
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (field[i][j]==1){
+                    checkwin=false;
+                }
+            }
+
+        }
+
+        return checkwin;
     }
 }
