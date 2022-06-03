@@ -1,5 +1,6 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian;
 
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spiel;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spieler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,7 +13,7 @@ public class SchiffeversenkenController {
 
     @FXML
     private GridPane gp;
-    Spieler sp;
+
     Circle[][] circleField;
 
     @FXML
@@ -20,6 +21,7 @@ public class SchiffeversenkenController {
         circleField=new Circle[10][10];
         sp = new Spieler("Consti");
         sp.getSpielfeld().fillWater();
+        //View Klasse Code
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Circle cl = new Circle(14);

@@ -15,7 +15,7 @@ public class HelloController {
     public Button createButton;
     public String[] playername = new String[2];
     public int createcounter = 0;
-    public Spiel spiel;
+    public Spiel spiel = new Spiel();
 
 
     public void oncreateclick() throws IOException {
@@ -24,7 +24,7 @@ public class HelloController {
         usereingabe.setText("");
 
         createcounter++;
-        if(createcounter==2){
+        if (createcounter == 2) {
             switchwindow();
         }
         user.setText("Enter name of player 2");
@@ -32,6 +32,7 @@ public class HelloController {
     }
 
     private void switchwindow() throws IOException {
-        new SchiffeversenkenApplication();
+        SchiffeversenkenApplication a1 = new SchiffeversenkenApplication(spiel);
+        a1.
     }
 }
