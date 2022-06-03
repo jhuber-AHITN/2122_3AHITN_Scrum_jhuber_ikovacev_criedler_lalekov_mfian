@@ -1,6 +1,8 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian;
 
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spiel;
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spieler;
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spielfeld;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +17,8 @@ public class HelloController {
     public Button createButton;
     public String[] playername = new String[2];
     public int createcounter = 0;
-    public Spiel spiel;
+
+
 
 
     public void oncreateclick() throws IOException {
@@ -24,14 +27,17 @@ public class HelloController {
         usereingabe.setText("");
 
         createcounter++;
-        if (createcounter == 2) {
-            switchwindow();
+        if(createcounter==2){
+            Spielfeld spf=new Spielfeld();
+            Spieler sp1=new Spieler(playername[0]);
+            Spieler sp2=new Spieler(playername[1]);
+            Spiel spiel=new Spiel(spf,sp1,sp2);
+
+            new SchiffeversenkenApplication(spiel);
         }
         user.setText("Enter name of player 2");
         createButton.setText("Create 2nd player");
-    }
 
-    private void switchwindow() throws IOException {
-        SchiffeversenkenApplication a1 = new SchiffeversenkenApplication(spiel);
+
     }
 }
