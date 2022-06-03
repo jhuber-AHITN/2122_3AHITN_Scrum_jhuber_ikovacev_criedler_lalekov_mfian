@@ -40,15 +40,4 @@ public class HelloController {
 
 
     }
-
-    private void switchwindow() throws IOException {
-    }
-
-    public  String[] getPlayername() {
-        return playername;
-    }
-
-    public void setPlayername(String[] playername) {
-        this.playername = playername;
-    }
 }

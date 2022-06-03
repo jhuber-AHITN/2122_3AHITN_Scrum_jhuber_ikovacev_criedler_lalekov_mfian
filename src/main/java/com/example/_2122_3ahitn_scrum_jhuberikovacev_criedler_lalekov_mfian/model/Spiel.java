@@ -6,6 +6,10 @@ public class Spiel {
     short spielerAmZug;
     boolean sieg;
 
+    public Spieler[] getSpieler() {
+        return spieler;
+    }
+
     protected boolean checkSieg(){
         return sieg;
     }
