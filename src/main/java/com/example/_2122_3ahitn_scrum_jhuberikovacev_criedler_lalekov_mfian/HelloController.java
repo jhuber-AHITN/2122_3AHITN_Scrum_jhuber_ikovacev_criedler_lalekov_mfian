@@ -15,7 +15,7 @@ public class HelloController {
     public Button createButton;
     public String[] playername = new String[2];
     public int createcounter = 0;
-    public Spiel spiel = new Spiel();
+    public Spiel spiel;
 
 
     public void oncreateclick() throws IOException {
@@ -33,6 +33,5 @@ public class HelloController {
 
     private void switchwindow() throws IOException {
         SchiffeversenkenApplication a1 = new SchiffeversenkenApplication(spiel);
-        a1.
     }
 }
