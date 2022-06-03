@@ -9,5 +9,4 @@ public class Spiel {
     protected boolean checkSieg(){
         return sieg;
     }
-
 }

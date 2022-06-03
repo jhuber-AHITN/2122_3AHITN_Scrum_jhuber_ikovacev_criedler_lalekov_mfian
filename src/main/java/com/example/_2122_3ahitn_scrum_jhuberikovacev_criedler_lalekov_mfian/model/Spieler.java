@@ -16,17 +16,18 @@ public class Spieler {
 
     public boolean guess(char row, int col, Spieler sp) {
         boolean checkhit = false;
-        if(sp.spielfeld.getField()[row][col]==1){
-            sp.spielfeld.getField()[row][col]=3;
-            checkhit=true;
+        if (sp.spielfeld.getField()[row][col] == 1) {
+            sp.spielfeld.getField()[row][col] = 3;
+            checkhit = true;
         }
 
-       return checkhit;
+        return checkhit;
     }
 
     /**
      * ueberprueft dds direction boolean und iterieten je nachdem ob es auf LINKS oder OBEN gesetzt ist das field array durch.
      * Wenn es OBEN gesetzt laeuft die for schleife solange wie in der laenge angegeben ist, wobei die Reihe fix bleibt und die Spalte immer höher geht
+     *
      * @param row
      * @param col
      * @param length
@@ -36,20 +37,18 @@ public class Spieler {
     public void placeShip(char row, int col, int length, boolean direction) {
         if (direction == OBEN) {
             for (int i = row; i < row + length; i++) {
-                try {
-                    spielfeld.setShip(row, i);
-                }catch (Exception e){
 
-                }
+                spielfeld.setShip(row, i);
             }
         } else {
             for (int i = col; i < col + length; i++) {
-                try {
-                    spielfeld.setShip(row, i);
-                }catch (Exception e){
+                spielfeld.setShip(row, i);
 
-                }
             }
         }
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
