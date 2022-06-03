@@ -6,7 +6,7 @@ public class Spiel {
     protected  short spielerAmZug;
     protected boolean sieg;
 
-    Spiel(Spieler p1,Spieler p2){
+   public Spiel(Spieler p1,Spieler p2){
         this.schiffeVersenkenField=new Spielfeld();
         this.spieler=new Spieler[2];
         this.spieler[0]=p1;

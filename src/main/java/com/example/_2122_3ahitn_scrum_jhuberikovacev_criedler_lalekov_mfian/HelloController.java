@@ -28,10 +28,9 @@ public class HelloController {
 
         createcounter++;
         if(createcounter==2){
-            Spielfeld spf=new Spielfeld();
             Spieler sp1=new Spieler(playername[0]);
             Spieler sp2=new Spieler(playername[1]);
-            Spiel spiel=new Spiel(spf,sp1,sp2);
+            Spiel spiel=new Spiel(sp1,sp2);
 
             new SchiffeversenkenApplication(spiel);
         }
