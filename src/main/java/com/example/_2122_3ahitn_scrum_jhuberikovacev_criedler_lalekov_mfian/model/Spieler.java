@@ -4,7 +4,6 @@ public class Spieler {
     protected String name;
     private Spielfeld spielfeld;
     public static final boolean LINKS = true;
-
     public static final boolean OBEN = false;
 
     // array fuer Schiffskins
@@ -50,5 +49,8 @@ public class Spieler {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public Spielfeld getSpielfeld() {
+        return spielfeld;
     }
 }
