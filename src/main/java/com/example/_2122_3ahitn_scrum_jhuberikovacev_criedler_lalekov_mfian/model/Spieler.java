@@ -10,10 +10,11 @@ public class Spieler {
 
     public Spieler(String name) {
         this.name = name;
+        this.spielfeld=new Spielfeld();
     }
 
 
-    public boolean guess(char row, int col, Spieler sp) {
+    public boolean guess(int row, int col, Spieler sp) {
         boolean checkhit = false;
         if (sp.spielfeld.getField()[row][col] == 1) {
             sp.spielfeld.getField()[row][col] = 3;
@@ -52,5 +53,9 @@ public class Spieler {
     }
     public Spielfeld getSpielfeld() {
         return spielfeld;
+    }
+
+    public String getName() {
+        return name;
     }
 }

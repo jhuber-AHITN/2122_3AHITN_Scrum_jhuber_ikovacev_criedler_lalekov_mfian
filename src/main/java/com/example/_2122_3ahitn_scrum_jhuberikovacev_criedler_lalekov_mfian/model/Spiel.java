@@ -3,6 +3,7 @@ package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.mod
 public class Spiel {
     protected Spieler[] spieler;
     protected  short spielerAmZug;
+    protected  short spielerNichtAmZug;
     protected boolean sieg;
 
    public Spiel(Spieler p1,Spieler p2){
@@ -10,6 +11,7 @@ public class Spiel {
         this.spieler[0]=p1;
         this.spieler[1]=p2;
         this.spielerAmZug=0;
+        this.spielerNichtAmZug=1;
         this.sieg=false;
 
     }
@@ -22,5 +24,12 @@ public class Spiel {
         return spieler;
     }
 
-
+    public short getSpielerNichtAmZug() {
+        return spielerNichtAmZug;
+    }
+    public void switchPlayer(){
+       short newCurrentPlayer=this.spielerNichtAmZug;
+       this.spielerNichtAmZug=spielerAmZug;
+       this.spielerAmZug=newCurrentPlayer;
+    }
 }
