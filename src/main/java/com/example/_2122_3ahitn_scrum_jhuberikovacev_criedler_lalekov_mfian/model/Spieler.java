@@ -1,6 +1,11 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model;
 
 public class Spieler {
+
+
+    public static final int SCHIFFANZAHL = 10;
+
+    protected Schiff[] Flotte =new Schiff[SCHIFFANZAHL];
     protected String name;
     private Spielfeld spielfeld;
     public static final boolean LINKS = true;
@@ -11,6 +16,17 @@ public class Spieler {
     public Spieler(String name) {
         this.name = name;
         this.spielfeld=new Spielfeld();
+        for (int i = 0; i < SCHIFFANZAHL; i++) {
+            if (i==0){
+                Flotte[i]=new Schiff(5);
+            }else if(i<3){
+                Flotte[i]=new Schiff(4);
+            }else if(i<6){
+                Flotte[i]=new Schiff(3);
+            }else if (i>6){
+                Flotte[i]=new Schiff(2);
+            }
+        }
     }
 
 
@@ -30,20 +46,18 @@ public class Spieler {
      *
      * @param row
      * @param col
-     * @param length
      * @param direction
      * @return
      */
-    public void placeShip(char row, int col, int length, boolean direction) {
+    public void placeShip(Schiff ship, int row, int col, boolean direction) {
         if (direction == OBEN) {
-            for (int i = row; i < row + length; i++) {
+            for (int i = row; i < row + ship.laenge; i++) {
 
                 spielfeld.setShip(row, i);
             }
         } else {
-            for (int i = col; i < col + length; i++) {
+            for (int i = col; i < col + ship.laenge; i++) {
                 spielfeld.setShip(row, i);
-
             }
         }
     }
@@ -58,4 +72,9 @@ public class Spieler {
     public String getName() {
         return name;
     }
+
+    public Schiff[] getFlotte() {
+        return Flotte;
+    }
+
 }

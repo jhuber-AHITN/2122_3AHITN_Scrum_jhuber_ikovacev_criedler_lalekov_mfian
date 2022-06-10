@@ -56,7 +56,7 @@ public class Spielfeld {
         return checkwin;
     }
 
-    public void setShip(char row, int i) {
+    public void setShip(int row, int i) {
         if (field[row][i] == EMPTY) {
             field[row][i] = SHIP;
         }
