@@ -56,6 +56,16 @@ public class Spieler {
         if (direction == LINKS) {
             //if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
+            if (col+ship.laenge>10){
+                shipplaceable=false;
+            } else {
+                for (int i = col; i < col + ship.laenge; i++) {
+                    if (spielfeld.getField()[row][i]==Spielfeld.SHIP || i > 9){
+                        shipplaceable=false;
+                        break;
+                    }
+                }
+            }
 
 
                 if (shipplaceable) {
@@ -64,26 +74,38 @@ public class Spieler {
 
                     }
                     amountOfShipsPlaced++;
+                    prientfield();
+                    return true;
                 }
-                prientfield();
-                return true;
+
            // }
         } else {
            // if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
-
+            if (row+ship.laenge>10){
+                shipplaceable=false;
+            } else {
+            for (int i = row; i < row + ship.laenge; i++) {
+                if (spielfeld.getField()[i][col]==Spielfeld.SHIP || i > 9){
+                    shipplaceable=false;
+                    break;
+                }
+            }
+            }
 
                 if(shipplaceable) {
                     for (int i = row; i < row + ship.laenge; i++) {
                         spielfeld.setShip(i, col);
                     }
+                    amountOfShipsPlaced++;
+                    prientfield();
+                    return true;
                 }
-                amountOfShipsPlaced++;
-                prientfield();
-                return true;
+
+
            // }
-        }//prientfield();
-        //return false;
+        }
+        return false;
 
     }
 
