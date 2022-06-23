@@ -191,6 +191,8 @@ public class SchiffeversenkenController {
                 sp.switchPlayer();
                 this.selectRightView();
                 sp.setStarted(true);
+                counter1++;
+                HelloController.action.setLabel(roundCounter,"Round:\n         "+(counter1-10));
             }
 
         } else {
@@ -225,7 +227,8 @@ public class SchiffeversenkenController {
 
         sp.switchPlayer();
         this.selectRightView();
-
+        counter1++;
+        HelloController.action.setLabel(roundCounter,"Round:\n"+(counter1-10));
         HelloController.action.setLabel(whosTrun,sp.getSpieler()[sp.getSpielerAmZug()].getName()+"'s Turn");
     }
 
