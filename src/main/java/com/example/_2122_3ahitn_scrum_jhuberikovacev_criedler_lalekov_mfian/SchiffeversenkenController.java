@@ -22,6 +22,7 @@ public class SchiffeversenkenController {
     protected GridPane gpP1;
     @FXML
     protected GridPane gpP2;
+    boolean direction;
 
 
     public void setSp(Spiel spiel) {
@@ -46,35 +47,42 @@ public class SchiffeversenkenController {
             }
         }
         this.selectRightView();
+         direction = Spieler.OBEN;
     }
 
 
     @FXML
     public void onClick(javafx.scene.input.MouseEvent event) {
-        boolean direction=Spieler.OBEN;
-
         Node clickedNode = event.getPickResult().getIntersectedNode();
+
+
+
         if (event.getButton() == MouseButton.SECONDARY) {
             if (direction == Spieler.OBEN) {
                 direction = Spieler.LINKS;
+                System.out.println("Dir: left");
             } else {
                 direction = Spieler.OBEN;
-            }
-
-
-            if (clickedNode != gpP1 || clickedNode != gpP2) {
-                // click on descendant node
-                Integer colIndex = GridPane.getColumnIndex(clickedNode);
-                Integer rowIndex = GridPane.getRowIndex(clickedNode);
-                System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getName() + " shot:" + colIndex + " And: " + rowIndex);
-                sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter], rowIndex, colIndex, direction);
-                sp.getSpieler()[sp.getSpielerAmZug()].guess(rowIndex, colIndex, sp.getSpieler()[sp.getSpielerNichtAmZug()]);
-                this.selectRightView();
-                currentView.checkHit(colIndex, rowIndex);
-                sp.switchPlayer();
+                System.out.println("Dir: Right");
             }
         }
+
+        if ((clickedNode != gpP1 || clickedNode != gpP2) && event.getButton()==MouseButton.PRIMARY) {
+            // click on descendant node
+            Integer colIndex = GridPane.getColumnIndex(clickedNode);
+            Integer rowIndex = GridPane.getRowIndex(clickedNode);
+            if (sp.isStarted()){
+                this.shoot(rowIndex,colIndex);
+            }
+            else {
+                this.placeShip(rowIndex,colIndex,direction);
+            }
+
+
+        }
     }
+
+
         protected void selectRightView () {
             if (sp.getSpielerAmZug() == 0) {
                 gpP2.setDisable(false);
@@ -86,7 +94,24 @@ public class SchiffeversenkenController {
                 currentView = viewFieldP2;
             }
         }
+        public void placeShip( int row ,int col,boolean direction){
+        boolean succes=false;
+            succes= sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter], row, col, direction);
+
+            if (succes){
+                counter++;
+                System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter].getLaenge());
+            }
+        }
+        public void shoot(int row, int col){
+            System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getName() + " shot:" + col + " And: " + row);
+            sp.getSpieler()[sp.getSpielerAmZug()].guess(row, col, sp.getSpieler()[sp.getSpielerNichtAmZug()]);
+            this.selectRightView();
+            currentView.checkHit(col, row);
+            sp.switchPlayer();
+        }
+}
 
 
-    }
+
 

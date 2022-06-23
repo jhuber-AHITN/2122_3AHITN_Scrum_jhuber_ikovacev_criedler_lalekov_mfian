@@ -5,15 +5,16 @@ public class Spiel {
     protected  short spielerAmZug;
     protected  short spielerNichtAmZug;
     protected boolean sieg;
+    protected boolean started;
 
-   public Spiel(Spieler p1,Spieler p2){
+    public Spiel(Spieler p1, Spieler p2){
         this.spieler=new Spieler[2];
         this.spieler[0]=p1;
         this.spieler[1]=p2;
         this.spielerAmZug=0;
         this.spielerNichtAmZug=1;
         this.sieg=false;
-
+        this.started=false;
     }
 
     public short getSpielerAmZug() {
@@ -26,6 +27,9 @@ public class Spiel {
 
     public short getSpielerNichtAmZug() {
         return spielerNichtAmZug;
+    }
+    public boolean isStarted() {
+        return started;
     }
     public void switchPlayer(){
        short newCurrentPlayer=this.spielerNichtAmZug;

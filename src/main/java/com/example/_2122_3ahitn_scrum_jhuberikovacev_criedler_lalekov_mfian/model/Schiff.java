@@ -9,4 +9,7 @@ public class Schiff {
         this.isDead=false;
     }
 
+    public int getLaenge() {
+        return laenge;
+    }
 }

@@ -21,14 +21,16 @@ public class HelloController {
     protected BorderPane backGround;
 
 public void initialize(){
-    Image img = new Image("src\\main\\resources\\com\\example\\_2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian\\imgs\\Login.png");
-    BackgroundImage bImg = new BackgroundImage(img,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundPosition.DEFAULT,
-            BackgroundSize.DEFAULT);
-    Background bGround = new Background(bImg);
-    backGround.setBackground(bGround);
+    /**
+     *   Image img = new Image("");
+     *     BackgroundImage bImg = new BackgroundImage(img,
+     *             BackgroundRepeat.NO_REPEAT,
+     *             BackgroundRepeat.NO_REPEAT,
+     *             BackgroundPosition.DEFAULT,
+     *             BackgroundSize.DEFAULT);
+     *     Background bGround = new Background(bImg);
+     *     backGround.setBackground(bGround);
+     */
 }
 
 

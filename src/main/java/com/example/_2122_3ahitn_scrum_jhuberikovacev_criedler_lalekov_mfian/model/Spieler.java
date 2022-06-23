@@ -8,6 +8,7 @@ public class Spieler {
     protected Schiff[] Flotte =new Schiff[SCHIFFANZAHL];
     protected String name;
     private Spielfeld spielfeld;
+    protected int amountOfShipsPlaced;
     public static final boolean LINKS = true;
     public static final boolean OBEN = false;
 
@@ -27,6 +28,7 @@ public class Spieler {
                 Flotte[i]=new Schiff(2);
             }
         }
+        amountOfShipsPlaced=0;
     }
 
 
@@ -49,17 +51,26 @@ public class Spieler {
      * @param direction
      * @return
      */
-    public void placeShip(Schiff ship, int row, int col, boolean direction) {
+    public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
         if (direction == OBEN) {
+            if (row-Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()){
             for (int i = row; i < row + ship.laenge; i++) {
-
                 spielfeld.setShip(row, i);
+
+            }
+                amountOfShipsPlaced++;
+            return true;
             }
         } else {
+            if (col-Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()){
             for (int i = col; i < col + ship.laenge; i++) {
                 spielfeld.setShip(row, i);
             }
+                amountOfShipsPlaced++;
+            return true;
+            }
         }
+        return false;
     }
 
     public void setName(String name) {
