@@ -59,7 +59,7 @@ public class SchiffeversenkenController {
             }
         }
         direction = Spieler.OBEN;
-this.selectRightView();
+        this.selectRightView();
     }
 
 
@@ -81,8 +81,8 @@ this.selectRightView();
         if ((clickedNode != gpP1 || clickedNode != gpP2) && event.getButton() == MouseButton.PRIMARY) {
             // click on descendant node
             //null pointer exception bei rowindex
-            Integer colIndex =  GridPane.getColumnIndex(clickedNode);
-            Integer rowIndex =  GridPane.getRowIndex(clickedNode);
+            Integer colIndex = GridPane.getColumnIndex(clickedNode);
+            Integer rowIndex = GridPane.getRowIndex(clickedNode);
             if (sp.isStarted()) {
                 this.shoot(rowIndex, colIndex);
             } else {
@@ -109,13 +109,13 @@ this.selectRightView();
     public void placeShip(int row, int col, boolean direction) {
         boolean success;
 
-        System.out.println(row+" "+col);
+        System.out.println(row + " " + col);
         success = sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1], row, col, direction);
         System.out.println(success);
 
         if (success) {
             error.setText("shipplaced");
-            if (direction== Spieler.OBEN){
+            if (direction == Spieler.OBEN) {
 
             }
             for (int i = 0; i < 10; i++) {
@@ -126,7 +126,7 @@ this.selectRightView();
                             cl.setFill(Color.BROWN);
                             circleFieldP1[j][i] = cl;
 
-                            gpP1.add(cl, j,i);
+                            gpP1.add(cl, j, i);
 
                         } else {
                             Circle cl = new Circle(14);
@@ -146,14 +146,36 @@ this.selectRightView();
             amountOfShipsPlaced++;
 
             if (amountOfShipsPlaced == 10) {
+
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+
+                        Circle cl = new Circle(14);
+                        cl.setFill(Color.BLUEVIOLET);
+                        circleFieldP1[j][i] = cl;
+                        gpP1.add(cl, j, i);
+                    }
+                }
+
                 sp.switchPlayer();
                 secondplayer = true;
                 counter1 = 0;
                 this.selectRightView();
+
             }
 
-            if (amountOfShipsPlaced == 20) {
 
+            if (amountOfShipsPlaced == 20) {
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+
+                        Circle cl = new Circle(14);
+                        cl.setFill(Color.BLUEVIOLET);
+                        circleFieldP2[j][i] = cl;
+                        gpP2.add(cl, j, i);
+                    }
+                }
+                sp.switchPlayer();
                 sp.setStarted(true);
             }
 
@@ -164,10 +186,29 @@ this.selectRightView();
 
     public void shoot(int row, int col) {
         System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getName() + " shot:" + col + " And: " + row);
-        sp.getSpieler()[sp.getSpielerAmZug()].guess(row, col, sp.getSpieler()[sp.getSpielerNichtAmZug()]);
+       if(sp.getSpieler()[sp.getSpielerAmZug()].guess(row, col, sp.getSpieler()[sp.getSpielerNichtAmZug()])) {
+
+                       if (sp.getSpielerAmZug() == 1) {
+                           Circle cl = new Circle(14);
+                           cl.setFill(Color.BROWN);
+                           circleFieldP1[col][row] = cl;
+                           gpP1.add(cl, col, row);
+
+                       } else {
+                           Circle cl = new Circle(14);
+                           cl.setFill(Color.BROWN);
+                           circleFieldP2[col][row] = cl;
+
+                           gpP2.add(cl, col, row);
+
+                       }
+                   }
+
         this.selectRightView();
-        currentView.checkHit(col, row);
+
         sp.switchPlayer();
+
+        currentView.checkHit(col, row);
     }
 
 }
