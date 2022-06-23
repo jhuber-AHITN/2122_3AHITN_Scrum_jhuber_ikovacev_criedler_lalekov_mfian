@@ -16,7 +16,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SchiffeversenkenController implements Initializable {
+public class SchiffeversenkenController {
     public TextField error;
     public TextField currentdirection;
     Circle[][] circleFieldP1 = new Circle[10][10];
@@ -59,6 +59,7 @@ public class SchiffeversenkenController implements Initializable {
             }
         }
         direction = Spieler.OBEN;
+this.selectRightView();
     }
 
 
@@ -95,25 +96,19 @@ public class SchiffeversenkenController implements Initializable {
 
     protected void selectRightView() {
         if (sp.getSpielerAmZug() == 0) {
-            gpP2.setDisable(false);
-            gpP1.setDisable(true);
+            gpP2.setDisable(true);
+            gpP1.setDisable(false);
             currentView = viewFieldP2;
         } else {
-            gpP1.setDisable(false);
-            gpP2.setDisable(true);
-            currentView = viewFieldP2;
+            gpP1.setDisable(true);
+            gpP2.setDisable(false);
+            currentView = viewFieldP1;
         }
     }
 
     public void placeShip(int row, int col, boolean direction) {
         boolean success;
 
-        if (amountOfShipsPlaced == 10) {
-            this.selectRightView();
-            sp.switchPlayer();
-            secondplayer = true;
-            counter1 = 0;
-        }
         System.out.println(row+" "+col);
         success = sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1], row, col, direction);
         System.out.println(success);
@@ -123,32 +118,39 @@ public class SchiffeversenkenController implements Initializable {
             if (direction== Spieler.OBEN){
 
             }
-//            for (int i = 0; i < 10; i++) {
-//                for (int j = 0; j < 10; j++) {
-//                    if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().getField()[i][j] == Spielfeld.SHIP) {
-//                        if (!secondplayer) {
-//                            Circle cl = new Circle(14);
-//                            cl.setFill(Color.BROWN);
-//                            circleFieldP1[i][j] = cl;
-//
-//                            gpP1.add(cl, i, j);
-//
-//                        } else {
-//                            Circle cl = new Circle(14);
-//                            cl.setFill(Color.BROWN);
-//                            circleFieldP2[i][j] = cl;
-//
-//                            gpP2.add(cl, i, j);
-//
-//                        }
-//                    }
-//                }
-//            }
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().getField()[i][j] == Spielfeld.SHIP) {
+                        if (!secondplayer) {
+                            Circle cl = new Circle(14);
+                            cl.setFill(Color.BROWN);
+                            circleFieldP1[j][i] = cl;
+
+                            gpP1.add(cl, j,i);
+
+                        } else {
+                            Circle cl = new Circle(14);
+                            cl.setFill(Color.BROWN);
+                            circleFieldP2[j][i] = cl;
+
+                            gpP2.add(cl, j, i);
+
+                        }
+                    }
+                }
+            }
 
             System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1].getLaenge());
 
             counter1++;
             amountOfShipsPlaced++;
+
+            if (amountOfShipsPlaced == 10) {
+                sp.switchPlayer();
+                secondplayer = true;
+                counter1 = 0;
+                this.selectRightView();
+            }
 
             if (amountOfShipsPlaced == 20) {
 
@@ -168,10 +170,6 @@ public class SchiffeversenkenController implements Initializable {
         sp.switchPlayer();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        direction = Spieler.OBEN;
-    }
 }
 
 
