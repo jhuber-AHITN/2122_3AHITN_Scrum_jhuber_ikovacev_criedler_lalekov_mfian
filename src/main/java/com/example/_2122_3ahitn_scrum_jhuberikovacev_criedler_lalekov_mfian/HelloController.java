@@ -1,5 +1,6 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian;
 
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.View.ViewAction;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spiel;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spieler;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.layout.*;
 import java.io.IOException;
 
 public class HelloController {
+    public static ViewAction action;
     public Label user;
     public TextField usereingabe;
     public Button createButton;
@@ -21,6 +23,7 @@ public class HelloController {
     protected BorderPane backGround;
 
 public void initialize(){
+    action=new ViewAction();
     /**
      *   Image img = new Image("");
      *     BackgroundImage bImg = new BackgroundImage(img,

@@ -7,6 +7,7 @@ import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.mode
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
@@ -17,8 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SchiffeversenkenController {
-    public TextField error;
-    public TextField currentdirection;
+
     Circle[][] circleFieldP1 = new Circle[10][10];
     Circle[][] circleFieldP2 = new Circle[10][10];
     ViewField viewFieldP1 = new ViewField(circleFieldP1);
@@ -27,6 +27,16 @@ public class SchiffeversenkenController {
     protected int counter1 = 0;
     protected boolean secondplayer = false;
 
+    @FXML
+    public Label currentdirection;
+    @FXML
+    Label labelForP1;
+    @FXML
+    Label labelForP2;
+    @FXML
+    Label roundCounter;
+    @FXML
+    Label whosTrun;
 
     protected Spiel sp;
     @FXML
@@ -59,7 +69,10 @@ public class SchiffeversenkenController {
             }
         }
         direction = Spieler.OBEN;
-this.selectRightView();
+        this.selectRightView();
+        HelloController.action.setLabel(labelForP1,sp.getSpieler()[0].getName());
+        HelloController.action.setLabel(labelForP2,sp.getSpieler()[1].getName());
+        HelloController.action.setLabel(whosTrun,sp.getSpieler()[sp.getSpielerAmZug()].getName()+"'s Turn");
     }
 
 
@@ -71,10 +84,10 @@ this.selectRightView();
         if (event.getButton() == MouseButton.SECONDARY) {
             if (direction == Spieler.OBEN) {
                 direction = Spieler.LINKS;
-                currentdirection.setText("Direction changed: Left to right");
+                HelloController.action.setLabel(currentdirection,"Direction changed:\n     Left to right");
             } else {
                 direction = Spieler.OBEN;
-                currentdirection.setText("Direction changed: Up to down");
+                HelloController.action.setLabel(currentdirection,"Direction changed:\n     up to down");
             }
         }
 
@@ -114,7 +127,7 @@ this.selectRightView();
         System.out.println(success);
 
         if (success) {
-            error.setText("shipplaced");
+
             if (direction== Spieler.OBEN){
 
             }
@@ -150,6 +163,7 @@ this.selectRightView();
                 secondplayer = true;
                 counter1 = 0;
                 this.selectRightView();
+                HelloController.action.setLabel(whosTrun,sp.getSpieler()[sp.getSpielerAmZug()].getName()+"'s Turn");
             }
 
             if (amountOfShipsPlaced == 20) {
@@ -158,7 +172,7 @@ this.selectRightView();
             }
 
         } else {
-            error.setText("Error");
+            HelloController.action.setLabel(roundCounter,"Error");
         }
     }
 
@@ -168,6 +182,7 @@ this.selectRightView();
         this.selectRightView();
         currentView.checkHit(col, row);
         sp.switchPlayer();
+        HelloController.action.setLabel(whosTrun,sp.getSpieler()[sp.getSpielerAmZug()].getName()+"'s Turn");
     }
 
 }

@@ -45,5 +45,6 @@ public class Spiel {
         short newCurrentPlayer = this.spielerNichtAmZug;
         this.spielerNichtAmZug = spielerAmZug;
         this.spielerAmZug = newCurrentPlayer;
+
     }
 }
