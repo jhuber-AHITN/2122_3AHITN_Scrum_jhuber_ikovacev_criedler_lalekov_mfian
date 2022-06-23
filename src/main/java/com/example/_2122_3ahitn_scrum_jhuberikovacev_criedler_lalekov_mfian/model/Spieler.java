@@ -24,7 +24,7 @@ public class Spieler {
                 Flotte[i] = new Schiff(4);
             } else if (i < 6) {
                 Flotte[i] = new Schiff(3);
-            } else if (i > 6) {
+            } else {
                 Flotte[i] = new Schiff(2);
             }
         }
@@ -54,7 +54,7 @@ public class Spieler {
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
         boolean shipplaceable = true;
         if (direction == OBEN) {
-            if (row - Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()) {
+            if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
                 for (int i = row; i < row + ship.laenge; i++) {
                     if (!spielfeld.checkplaceable(row, i)) {
@@ -72,7 +72,7 @@ public class Spieler {
                 return true;
             }
         } else {
-            if (col - Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()) {
+            if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
                 for (int i = col; i < col + ship.laenge; i++) {
                     spielfeld.setShip(i, col);
                 }

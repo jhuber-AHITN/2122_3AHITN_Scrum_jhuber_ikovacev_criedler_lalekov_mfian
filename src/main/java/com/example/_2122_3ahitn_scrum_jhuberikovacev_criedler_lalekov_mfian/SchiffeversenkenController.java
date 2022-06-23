@@ -3,9 +3,11 @@ package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.View.ViewField;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spiel;
 import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spieler;
+import com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model.Spielfeld;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -15,13 +17,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SchiffeversenkenController implements Initializable {
+    public TextField error;
+    public TextField currentdirection;
     Circle[][] circleFieldP1 = new Circle[10][10];
     Circle[][] circleFieldP2 = new Circle[10][10];
     ViewField viewFieldP1 = new ViewField(circleFieldP1);
     ViewField viewFieldP2 = new ViewField(circleFieldP2);
     ViewField currentView;
     protected int counter1 = 0;
-    protected int counter2 = 0;
 
     protected Spiel sp;
     @FXML
@@ -29,7 +32,7 @@ public class SchiffeversenkenController implements Initializable {
     @FXML
     protected GridPane gpP2;
     boolean direction;
-    protected int amountOfShipsPlaced=0;
+    protected int amountOfShipsPlaced = 0;
 
 
     public void setSp(Spiel spiel) {
@@ -53,7 +56,6 @@ public class SchiffeversenkenController implements Initializable {
                 gpP2.add(cl, i, j);
             }
         }
-        this.selectRightView();
         direction = Spieler.OBEN;
     }
 
@@ -66,17 +68,18 @@ public class SchiffeversenkenController implements Initializable {
         if (event.getButton() == MouseButton.SECONDARY) {
             if (direction == Spieler.OBEN) {
                 direction = Spieler.LINKS;
-                System.out.println("Dir: left");
+                currentdirection.setText("Direction changed: Left to right");
             } else {
                 direction = Spieler.OBEN;
-                System.out.println("Dir: Right");
+                currentdirection.setText("Direction changed: Up to down");
             }
         }
 
         if ((clickedNode != gpP1 || clickedNode != gpP2) && event.getButton() == MouseButton.PRIMARY) {
             // click on descendant node
-            Integer colIndex = GridPane.getColumnIndex(clickedNode);
-            Integer rowIndex = GridPane.getRowIndex(clickedNode);
+            //null pointer exception bei rowindex
+            Integer colIndex = 3;//GridPane.getColumnIndex(clickedNode);
+            Integer rowIndex = 3;// GridPane.getRowIndex(clickedNode);
             if (sp.isStarted()) {
                 this.shoot(rowIndex, colIndex);
             } else {
@@ -101,19 +104,54 @@ public class SchiffeversenkenController implements Initializable {
     }
 
     public void placeShip(int row, int col, boolean direction) {
-        boolean success = false;
+        boolean success;
+        boolean secondplayer = false;
 
-        if (amountOfShipsPlaced >= 10) {
+        if (amountOfShipsPlaced == 10) {
+            this.selectRightView();
             sp.switchPlayer();
-            counter1=0;
-            }
-            success = sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1], row, col, direction);
+            secondplayer = true;
+            counter1 = 0;
+        }
+        success = sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1], row, col, direction);
+        System.out.println(success);
 
         if (success) {
-            amountOfShipsPlaced++;
-            counter1++;
+            error.setText("shipplaced");
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().getField()[i][j] == Spielfeld.SHIP) {
+                        if (!secondplayer) {
+                            Circle cl = new Circle(14);
+                            cl.setFill(Color.BROWN);
+                            circleFieldP1[i][j] = cl;
+
+                            gpP1.add(cl, i, j);
+
+                        } else {
+                            Circle cl = new Circle(14);
+                            cl.setFill(Color.BROWN);
+                            circleFieldP2[i][j] = cl;
+
+                            gpP2.add(cl, i, j);
+
+                        }
+                    }
+                }
+            }
 
             System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1].getLaenge());
+
+            counter1++;
+            amountOfShipsPlaced++;
+
+            if (amountOfShipsPlaced == 20) {
+
+                sp.setStarted(true);
+            }
+
+        } else {
+            error.setText("Error");
         }
     }
 
@@ -128,7 +166,6 @@ public class SchiffeversenkenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         direction = Spieler.OBEN;
-
     }
 }
 
