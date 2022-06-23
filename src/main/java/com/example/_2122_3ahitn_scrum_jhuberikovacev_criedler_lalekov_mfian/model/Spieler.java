@@ -5,7 +5,7 @@ public class Spieler {
 
     public static final int SCHIFFANZAHL = 10;
 
-    protected Schiff[] Flotte =new Schiff[SCHIFFANZAHL];
+    protected Schiff[] Flotte = new Schiff[SCHIFFANZAHL];
     protected String name;
     private Spielfeld spielfeld;
     protected int amountOfShipsPlaced;
@@ -16,19 +16,19 @@ public class Spieler {
 
     public Spieler(String name) {
         this.name = name;
-        this.spielfeld=new Spielfeld();
+        this.spielfeld = new Spielfeld();
         for (int i = 0; i < SCHIFFANZAHL; i++) {
-            if (i==0){
-                Flotte[i]=new Schiff(5);
-            }else if(i<3){
-                Flotte[i]=new Schiff(4);
-            }else if(i<6){
-                Flotte[i]=new Schiff(3);
-            }else if (i>6){
-                Flotte[i]=new Schiff(2);
+            if (i == 0) {
+                Flotte[i] = new Schiff(5);
+            } else if (i < 3) {
+                Flotte[i] = new Schiff(4);
+            } else if (i < 6) {
+                Flotte[i] = new Schiff(3);
+            } else if (i > 6) {
+                Flotte[i] = new Schiff(2);
             }
         }
-        amountOfShipsPlaced=0;
+        amountOfShipsPlaced = 0;
     }
 
 
@@ -52,30 +52,42 @@ public class Spieler {
      * @return
      */
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
+        boolean shipplaceable = true;
         if (direction == OBEN) {
-            if (row-Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()){
-            for (int i = row; i < row + ship.laenge; i++) {
-                spielfeld.setShip(row, i);
+            if (row - Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()) {
 
-            }
-                amountOfShipsPlaced++;
-            return true;
+                for (int i = row; i < row + ship.laenge; i++) {
+                    if (!spielfeld.checkplaceable(row, i)) {
+                        shipplaceable = false;
+                    }
+                }
+
+                if (shipplaceable) {
+                    for (int i = row; i < row + ship.laenge; i++) {
+                        spielfeld.setShip(row, i);
+
+                    }
+                    amountOfShipsPlaced++;
+                }
+                return true;
             }
         } else {
-            if (col-Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()){
-            for (int i = col; i < col + ship.laenge; i++) {
-                spielfeld.setShip(row, i);
-            }
+            if (col - Flotte[amountOfShipsPlaced].getLaenge() < Flotte[amountOfShipsPlaced].getLaenge()) {
+                for (int i = col; i < col + ship.laenge; i++) {
+                    spielfeld.setShip(i, col);
+                }
                 amountOfShipsPlaced++;
-            return true;
+                return true;
             }
         }
         return false;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
+
     public Spielfeld getSpielfeld() {
         return spielfeld;
     }
@@ -87,5 +99,18 @@ public class Spieler {
     public Schiff[] getFlotte() {
         return Flotte;
     }
-
 }
+/*
+    public int shoot(int row, int col) {
+        if (row < 0 || row)
+    }
+
+    public int shoot(int row, int col)throw
+
+        IllegalCoordinateException{
+        if(<0)throw new IllegalCoordinat._ eException();
+        return Spielfeld.EMPTY;
+        }
+}
+ */
+

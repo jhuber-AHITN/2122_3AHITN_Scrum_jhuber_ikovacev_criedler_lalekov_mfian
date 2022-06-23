@@ -57,8 +57,17 @@ public class Spielfeld {
     }
 
     public void setShip(int row, int i) {
-        if (field[row][i] == EMPTY) {
             field[row][i] = SHIP;
+
+
+    }
+
+    public boolean checkplaceable(int row, int i) {
+        boolean placeable=true;
+        if(field[row][i]==SHIP){
+            placeable= false;
         }
+        return placeable;
+
     }
 }
