@@ -54,12 +54,12 @@ public class Spieler {
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
         boolean shipplaceable = true;
         if (direction == LINKS) {
-            if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
+            //if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
 
 
                 if (shipplaceable) {
-                    for (int i = col; i < row + ship.laenge; i++) {
+                    for (int i = col; i < col + ship.laenge; i++) {
                         spielfeld.setShip(row, i);
 
                     }
@@ -67,20 +67,23 @@ public class Spieler {
                 }
                 prientfield();
                 return true;
-            }
+           // }
         } else {
-            if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
+           // if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
 
-                for (int i = row; i < col + ship.laenge; i++) {
-                    spielfeld.setShip(i, col);
+
+                if(shipplaceable) {
+                    for (int i = row; i < row + ship.laenge; i++) {
+                        spielfeld.setShip(i, col);
+                    }
                 }
                 amountOfShipsPlaced++;
                 prientfield();
                 return true;
-            }
-        }prientfield();
-        return false;
+           // }
+        }//prientfield();
+        //return false;
 
     }
 

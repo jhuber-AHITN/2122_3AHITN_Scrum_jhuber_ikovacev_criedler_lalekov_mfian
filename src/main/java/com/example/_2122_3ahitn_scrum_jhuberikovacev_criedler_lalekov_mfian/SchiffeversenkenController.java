@@ -25,6 +25,8 @@ public class SchiffeversenkenController implements Initializable {
     ViewField viewFieldP2 = new ViewField(circleFieldP2);
     ViewField currentView;
     protected int counter1 = 0;
+    protected boolean secondplayer = false;
+
 
     protected Spiel sp;
     @FXML
@@ -105,7 +107,6 @@ public class SchiffeversenkenController implements Initializable {
 
     public void placeShip(int row, int col, boolean direction) {
         boolean success;
-        boolean secondplayer = false;
 
         if (amountOfShipsPlaced == 10) {
             this.selectRightView();
