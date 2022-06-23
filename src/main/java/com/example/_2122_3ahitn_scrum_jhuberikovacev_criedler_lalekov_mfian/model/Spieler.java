@@ -7,7 +7,7 @@ public class Spieler {
 
     protected Schiff[] Flotte = new Schiff[SCHIFFANZAHL];
     protected String name;
-    private Spielfeld spielfeld;
+    protected Spielfeld spielfeld;
     protected int amountOfShipsPlaced;
     public static final boolean LINKS = true;
     public static final boolean OBEN = false;
@@ -53,34 +53,35 @@ public class Spieler {
      */
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
         boolean shipplaceable = true;
-        if (direction == OBEN) {
+        if (direction == LINKS) {
             if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
-                for (int i = row; i < row + ship.laenge; i++) {
-                    if (!spielfeld.checkplaceable(row, i)) {
-                        shipplaceable = false;
-                    }
-                }
+
 
                 if (shipplaceable) {
-                    for (int i = row; i < row + ship.laenge; i++) {
+                    for (int i = col; i < row + ship.laenge; i++) {
                         spielfeld.setShip(row, i);
 
                     }
                     amountOfShipsPlaced++;
                 }
+                prientfield();
                 return true;
             }
         } else {
             if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
-                for (int i = col; i < col + ship.laenge; i++) {
+
+
+                for (int i = row; i < col + ship.laenge; i++) {
                     spielfeld.setShip(i, col);
                 }
                 amountOfShipsPlaced++;
+                prientfield();
                 return true;
             }
-        }
+        }prientfield();
         return false;
+
     }
 
 
@@ -98,6 +99,15 @@ public class Spieler {
 
     public Schiff[] getFlotte() {
         return Flotte;
+    }
+
+    public void prientfield(){
+        for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    System.out.print(spielfeld.getField()[i][j]);
+                }
+            System.out.println("");
+        }
     }
 }
 /*

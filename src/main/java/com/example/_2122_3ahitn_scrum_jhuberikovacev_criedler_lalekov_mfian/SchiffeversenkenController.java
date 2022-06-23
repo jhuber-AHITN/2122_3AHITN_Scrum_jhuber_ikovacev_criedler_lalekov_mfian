@@ -78,8 +78,8 @@ public class SchiffeversenkenController implements Initializable {
         if ((clickedNode != gpP1 || clickedNode != gpP2) && event.getButton() == MouseButton.PRIMARY) {
             // click on descendant node
             //null pointer exception bei rowindex
-            Integer colIndex = 3;//GridPane.getColumnIndex(clickedNode);
-            Integer rowIndex = 3;// GridPane.getRowIndex(clickedNode);
+            Integer colIndex =  GridPane.getColumnIndex(clickedNode);
+            Integer rowIndex =  GridPane.getRowIndex(clickedNode);
             if (sp.isStarted()) {
                 this.shoot(rowIndex, colIndex);
             } else {
@@ -113,32 +113,36 @@ public class SchiffeversenkenController implements Initializable {
             secondplayer = true;
             counter1 = 0;
         }
+        System.out.println(row+" "+col);
         success = sp.getSpieler()[sp.getSpielerAmZug()].placeShip(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1], row, col, direction);
         System.out.println(success);
 
         if (success) {
             error.setText("shipplaced");
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().getField()[i][j] == Spielfeld.SHIP) {
-                        if (!secondplayer) {
-                            Circle cl = new Circle(14);
-                            cl.setFill(Color.BROWN);
-                            circleFieldP1[i][j] = cl;
+            if (direction== Spieler.OBEN){
 
-                            gpP1.add(cl, i, j);
-
-                        } else {
-                            Circle cl = new Circle(14);
-                            cl.setFill(Color.BROWN);
-                            circleFieldP2[i][j] = cl;
-
-                            gpP2.add(cl, i, j);
-
-                        }
-                    }
-                }
             }
+//            for (int i = 0; i < 10; i++) {
+//                for (int j = 0; j < 10; j++) {
+//                    if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().getField()[i][j] == Spielfeld.SHIP) {
+//                        if (!secondplayer) {
+//                            Circle cl = new Circle(14);
+//                            cl.setFill(Color.BROWN);
+//                            circleFieldP1[i][j] = cl;
+//
+//                            gpP1.add(cl, i, j);
+//
+//                        } else {
+//                            Circle cl = new Circle(14);
+//                            cl.setFill(Color.BROWN);
+//                            circleFieldP2[i][j] = cl;
+//
+//                            gpP2.add(cl, i, j);
+//
+//                        }
+//                    }
+//                }
+//            }
 
             System.out.println(sp.getSpieler()[sp.getSpielerAmZug()].getFlotte()[counter1].getLaenge());
 
