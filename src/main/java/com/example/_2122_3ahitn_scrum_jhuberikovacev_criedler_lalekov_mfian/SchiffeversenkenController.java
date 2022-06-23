@@ -189,6 +189,7 @@ public class SchiffeversenkenController {
                     }
                 }
                 sp.switchPlayer();
+                this.selectRightView();
                 sp.setStarted(true);
             }
 
@@ -216,10 +217,15 @@ public class SchiffeversenkenController {
 
                        }
                    }
+       if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().checkWin()){
+            // set text in label to "Player sp.getSpieler()[sp.getSpielerAmZug()] won"
+       }
 
-        this.selectRightView();
+
 
         sp.switchPlayer();
+        this.selectRightView();
+
         HelloController.action.setLabel(whosTrun,sp.getSpieler()[sp.getSpielerAmZug()].getName()+"'s Turn");
     }
 
