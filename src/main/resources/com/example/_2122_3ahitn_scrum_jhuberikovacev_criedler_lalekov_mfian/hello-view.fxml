@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -7,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.HelloController">
    <top>
       <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="600.0" text="Willkommen zu Schiffe versenken" BorderPane.alignment="CENTER">
          <font>
@@ -26,6 +26,11 @@
             </Label>
             <TextField fx:id="usereingabe" />
             <Button fx:id="createButton" mnemonicParsing="false" onAction="#oncreateclick" text="Create 1st player" />
+            <Label fx:id="labelForError" alignment="CENTER" prefHeight="30.0" prefWidth="217.0">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
    </center>

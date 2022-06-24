@@ -1,6 +1,8 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model;
 
-
+/**
+ * Field for each player
+ */
 public class Spielfeld {
     public static final int EMPTY = 0;
     public static final int SHIP = 1;
@@ -55,7 +57,7 @@ public class Spielfeld {
 
     public boolean shipplaceable(Schiff ship, int row, int col) {
         boolean shipplaceable=true;
-        if (col+ship.laenge>10){
+        if (col+ship.laenge>9){
             shipplaceable=false;
         } else {
             for (int i = col; i < col + ship.laenge; i++) {

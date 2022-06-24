@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -21,8 +22,11 @@ public class HelloController {
     public int createcounter = 0;
     @FXML
     protected BorderPane backGround;
+    @FXML
+    protected Label labelForError;
 
 public void initialize(){
+    labelForError.setTextFill(Color.RED);
     action=new ViewAction();
     /**
      *   Image img = new Image("");
@@ -36,23 +40,36 @@ public void initialize(){
      */
 }
 
+    /**
+     * Creates the 2 users for the game ships sink
+     * @throws IOException gets thrown if there are problems when giving "spiel" to SchiffeversenkenApplication
+     * */
 
-    public void oncreateclick() throws IOException {
+    public void oncreateclick() {
+    try {
+        if (usereingabe.getText().length() == 0) {
+            HelloController.action.setLabel(labelForError, "Input a Name!");
+        } else {
+            playername[createcounter] = usereingabe.getText();
+            usereingabe.setText("");
+            createcounter++;
 
-        playername[createcounter] = usereingabe.getText();
-        usereingabe.setText("");
+        }
+        if (createcounter == 1) {
+            user.setText("Enter name of player 2");
+            createButton.setText("Create 2nd player");
+            HelloController.action.setLabel(labelForError, "");
 
-        createcounter++;
-        if(createcounter==2){
-            Spieler sp1=new Spieler(playername[0]);
-            Spieler sp2=new Spieler(playername[1]);
-            Spiel spiel=new Spiel(sp1,sp2);
+        } else if (createcounter == 2) {
+            Spieler sp1 = new Spieler(playername[0]);
+            Spieler sp2 = new Spieler(playername[1]);
+            Spiel spiel = new Spiel(sp1, sp2);
 
             new SchiffeversenkenApplication(spiel);
         }
-        user.setText("Enter name of player 2");
-        createButton.setText("Create 2nd player");
+    } catch ( IOException e){
+        e.printStackTrace();
 
-
+    }
     }
 }
