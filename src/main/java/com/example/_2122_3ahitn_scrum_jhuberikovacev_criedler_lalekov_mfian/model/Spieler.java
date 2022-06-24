@@ -76,39 +76,57 @@ public class Spieler {
      * @return
      */
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
-        boolean shipplaceable = false;
+        boolean shipplaceable = true;
         if (direction == LINKS) {
 
-            System.out.println("placeship links nach rechts:" + spielfeld.shipplaceable(ship, row, col));
+            if (col+ship.laenge>10){
+                shipplaceable=false;
+            } else {
+                for (int i = col; i < col + ship.laenge; i++) {
+                    if (spielfeld.getField()[row][i]==Spielfeld.SHIP || i > 9){
+                        shipplaceable=false;
+                        break;
+                    }
+                }
+            }
 
-            if (spielfeld.shipplaceable(ship, row, col)) {
+
+            if (shipplaceable) {
                 for (int i = col; i < col + ship.laenge; i++) {
                     spielfeld.setShip(row, i);
 
                 }
                 amountOfShipsPlaced++;
                 prientfield();
-                shipplaceable = true;
+                return true;
             }
-
 
         } else {
 
-            System.out.println("placeship oben nach unten:" + spielfeld.shipplaceable(ship, row, col));
+            if (row+ship.laenge>10){
+                shipplaceable=false;
+            } else {
+                for (int i = row; i < row + ship.laenge; i++) {
+                    if (spielfeld.getField()[i][col]==Spielfeld.SHIP || i > 9){
+                        shipplaceable=false;
+                        break;
+                    }
+                }
+            }
 
-
-            if (spielfeld.shipplaceable(ship, row, col)) {
+            if(shipplaceable) {
                 for (int i = row; i < row + ship.laenge; i++) {
                     spielfeld.setShip(i, col);
                 }
                 amountOfShipsPlaced++;
                 prientfield();
-                shipplaceable = true;
+                return true;
             }
 
 
+            // }
         }
-        return shipplaceable;
+        return false;
 
     }
 

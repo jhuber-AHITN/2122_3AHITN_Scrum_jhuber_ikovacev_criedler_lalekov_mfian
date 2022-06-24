@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 public class SchiffeversenkenController {
 
+    public Label p1label;
+    public Label p2label;
     Circle[][] circleFieldP1 = new Circle[10][10];
     Circle[][] circleFieldP2 = new Circle[10][10];
     ViewField viewFieldP1 = new ViewField(circleFieldP1);
@@ -49,6 +51,12 @@ public class SchiffeversenkenController {
 
     public void setSp(Spiel spiel) {
         this.sp = spiel;
+        p1label.setText(sp.getSpieler()[0].getName());
+        p2label.setText(sp.getSpieler()[1].getName());
+        p1label.setVisible(false);
+        p2label.setVisible(false);
+
+
         sp.getSpieler()[0].getSpielfeld().fillWater();
         sp.getSpieler()[1].getSpielfeld().fillWater();
         for (int i = 0; i < 10; i++) {
@@ -220,7 +228,15 @@ public class SchiffeversenkenController {
                        }
                    }
        if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().checkWin()){
-            // set text in label to "Player sp.getSpieler()[sp.getSpielerAmZug()] won"
+           gpP1.setVisible(false);
+           gpP2.setVisible(false);
+
+           p1label.setText("Spieler "+sp.getSpieler()[sp.getSpielerAmZug()].getName()+"hat gewonnen");
+           p2label.setText("Spieler"+sp.getSpieler()[sp.getSpielerAmZug()].getName()+"hat gewonnen");
+           p1label.setVisible(true);
+           p2label.setVisible(true);
+
+           // set text in label to "Player sp.getSpieler()[sp.getSpielerAmZug()] won"
        }
 
 

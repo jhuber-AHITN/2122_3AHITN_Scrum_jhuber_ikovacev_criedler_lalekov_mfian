@@ -52,14 +52,6 @@ public class Spielfeld {
 
     }
 
-    public boolean checkplaceable(int row, int i) {
-        boolean placeable=true;
-        if(field[row][i]==SHIP){
-            placeable= false;
-        }
-        return placeable;
-
-    }
 
     public boolean shipplaceable(Schiff ship, int row, int col) {
         boolean shipplaceable=true;
@@ -67,7 +59,7 @@ public class Spielfeld {
             shipplaceable=false;
         } else {
             for (int i = col; i < col + ship.laenge; i++) {
-                if (field[row][i]==Spielfeld.SHIP || i > 9){
+                if (field[row][i]==Spielfeld.SHIP || i > 10){
                     shipplaceable=false;
                     break;
                 }
