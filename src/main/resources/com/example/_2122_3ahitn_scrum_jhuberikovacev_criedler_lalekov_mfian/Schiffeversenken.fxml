@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="518.0" prefWidth="1093.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.SchiffeversenkenController">
+<AnchorPane prefHeight="518.0" prefWidth="1093.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.SchiffeversenkenController">
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -24,7 +23,10 @@
                <Label fx:id="roundCounter" alignment="CENTER" prefHeight="63.0" prefWidth="248.0">
                   <font>
                      <Font size="15.0" />
-                  </font></Label>
+                  </font>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin></Label>
                <Label fx:id="labelForP2" alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="469.0" />
             </children>
          </HBox>
@@ -119,7 +121,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                         <VBox.margin>
-                           <Insets />
+                           <Insets left="3.0" />
                         </VBox.margin>
                           </GridPane>
                       </children>
@@ -132,12 +134,12 @@
                         </VBox.margin>
                      </Label>
                      <Label fx:id="whosTrun" alignment="CENTER" prefHeight="19.0" prefWidth="144.0" />
-                          <ImageView fitHeight="99.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
-                          <Label text="Amount" />
-                          <ImageView fitHeight="99.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
-                          <Label text="Amount" />
-                          <ImageView fitHeight="99.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" />
-                          <Label text="Amount" />
+                     <Label fx:id="labelForShips" alignment="CENTER" prefHeight="19.0" prefWidth="144.0" />
+                     <Label fx:id="infoLabel" alignment="CENTER" prefHeight="30.0" prefWidth="189.0">
+                        <VBox.margin>
+                           <Insets top="305.0" />
+                        </VBox.margin>
+                     </Label>
                       </children>
                   </VBox>
                <VBox fillWidth="false" prefHeight="554.0" prefWidth="506.0">
