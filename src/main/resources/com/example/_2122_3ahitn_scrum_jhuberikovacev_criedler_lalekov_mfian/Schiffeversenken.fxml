@@ -30,7 +30,7 @@
                <Label fx:id="labelForP2" alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="469.0" />
             </children>
          </HBox>
-          <HBox fillHeight="false" prefHeight="554.0" prefWidth="924.0">
+          <HBox fx:id="hBoxForplayfield" fillHeight="false" prefHeight="554.0" prefWidth="924.0">
               <children>
                <GridPane gridLinesVisible="true" prefHeight="460.0" prefWidth="80.0">
                   <columnConstraints>
