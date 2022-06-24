@@ -60,4 +60,19 @@ public class Spielfeld {
         return placeable;
 
     }
+
+    public boolean shipplaceable(Schiff ship, int row, int col) {
+        boolean shipplaceable=true;
+        if (col+ship.laenge>10){
+            shipplaceable=false;
+        } else {
+            for (int i = col; i < col + ship.laenge; i++) {
+                if (field[row][i]==Spielfeld.SHIP || i > 9){
+                    shipplaceable=false;
+                    break;
+                }
+            }
+        }
+        return shipplaceable;
+    }
 }

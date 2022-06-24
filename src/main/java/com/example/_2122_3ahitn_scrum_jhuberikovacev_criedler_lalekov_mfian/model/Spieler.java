@@ -1,5 +1,13 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model;
 
+/**
+ * Ermöglicht das erzeugen eines Spieler Obejkts,
+ * jeder Spieler hat eine Flotte in FOrm eines Schiffarrays,
+ * einen Namen und ein zugeordnetes Spielfeld
+ * Zusätzlich wird noch gespeichert wieviel Schiffe ein Spieler bereits platziert hat,
+ * um zu wissen wann man den currentPlayer beim platzieren der Schiffe wechseln sollte
+ */
+
 public class Spieler {
 
 
@@ -12,8 +20,12 @@ public class Spieler {
     public static final boolean LINKS = true;
     public static final boolean OBEN = false;
 
-    // array fuer Schiffskins
 
+    /**
+     * Gibd den Spieler seinen Namen, sein Spielfeld und befüült das Schiffsarray Flotte mit Schiffen
+     *
+     * @param name
+     */
     public Spieler(String name) {
         this.name = name;
         this.spielfeld = new Spielfeld();
@@ -32,10 +44,20 @@ public class Spieler {
     }
 
 
+    /**
+     * Überprüft ob der mit mitgegeben Spieler an der Stelle ein Schiff hat,
+     * wenn ja wird das Feld auf getroffen gesetzt
+     * wenn nicht wird false zurückgegebn
+     *
+     * @param row
+     * @param col
+     * @param sp
+     * @return
+     */
     public boolean guess(int row, int col, Spieler sp) {
         boolean checkhit = false;
-        if (sp.spielfeld.getField()[row][col] == 1) {
-            sp.spielfeld.getField()[row][col] = 3;
+        if (sp.spielfeld.getField()[row][col] == Spielfeld.SHIP) {
+            sp.spielfeld.getField()[row][col] = Spielfeld.HIT;
             checkhit = true;
         }
 
@@ -43,8 +65,10 @@ public class Spieler {
     }
 
     /**
-     * ueberprueft dds direction boolean und iterieten je nachdem ob es auf LINKS oder OBEN gesetzt ist das field array durch.
-     * Wenn es OBEN gesetzt laeuft die for schleife solange wie in der laenge angegeben ist, wobei die Reihe fix bleibt und die Spalte immer höher geht
+     * ueberprueft das direction boolean und iterieten je nachdem ob es auf LINKS oder OBEN gesetzt ist das field array durch.
+     * Überprüft dann ob das Schiff platt hat und platziert werden darf.
+     * Wenn es OBEN gesetzt laeuft die for schleife solange wie in der laenge angegeben ist, wobei die Spalte fix bleibt und die Reihe immer höher geht.
+     * Wenn es LINKS ist bleibt die Reihe fix und die Spalte erhöht sich mit jedem Durchlauf um 1
      *
      * @param row
      * @param col
@@ -52,67 +76,42 @@ public class Spieler {
      * @return
      */
     public boolean placeShip(Schiff ship, int row, int col, boolean direction) {
-        boolean shipplaceable = true;
+        boolean shipplaceable = false;
         if (direction == LINKS) {
-            //if ((row - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
-            if (col+ship.laenge>10){
-                shipplaceable=false;
-            } else {
+            System.out.println("placeship links nach rechts:" + spielfeld.shipplaceable(ship, row, col));
+
+            if (spielfeld.shipplaceable(ship, row, col)) {
                 for (int i = col; i < col + ship.laenge; i++) {
-                    if (spielfeld.getField()[row][i]==Spielfeld.SHIP || i > 9){
-                        shipplaceable=false;
-                        break;
-                    }
+                    spielfeld.setShip(row, i);
+
                 }
+                amountOfShipsPlaced++;
+                prientfield();
+                shipplaceable = true;
             }
 
 
-                if (shipplaceable) {
-                    for (int i = col; i < col + ship.laenge; i++) {
-                        spielfeld.setShip(row, i);
-
-                    }
-                    amountOfShipsPlaced++;
-                    prientfield();
-                    return true;
-                }
-
-           // }
         } else {
-           // if ((col - Flotte[amountOfShipsPlaced].getLaenge()) < Flotte[amountOfShipsPlaced].getLaenge()) {
 
-            if (row+ship.laenge>10){
-                shipplaceable=false;
-            } else {
-            for (int i = row; i < row + ship.laenge; i++) {
-                if (spielfeld.getField()[i][col]==Spielfeld.SHIP || i > 9){
-                    shipplaceable=false;
-                    break;
+            System.out.println("placeship oben nach unten:" + spielfeld.shipplaceable(ship, row, col));
+
+
+            if (spielfeld.shipplaceable(ship, row, col)) {
+                for (int i = row; i < row + ship.laenge; i++) {
+                    spielfeld.setShip(i, col);
                 }
+                amountOfShipsPlaced++;
+                prientfield();
+                shipplaceable = true;
             }
-            }
-
-                if(shipplaceable) {
-                    for (int i = row; i < row + ship.laenge; i++) {
-                        spielfeld.setShip(i, col);
-                    }
-                    amountOfShipsPlaced++;
-                    prientfield();
-                    return true;
-                }
 
 
-           // }
         }
-        return false;
+        return shipplaceable;
 
     }
 
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Spielfeld getSpielfeld() {
         return spielfeld;
@@ -126,26 +125,16 @@ public class Spieler {
         return Flotte;
     }
 
-    public void prientfield(){
+    /**
+     * Debugging in Console
+     */
+    public void prientfield() {
         for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    System.out.print(spielfeld.getField()[i][j]);
-                }
+            for (int j = 0; j < 10; j++) {
+                System.out.print(spielfeld.getField()[i][j]);
+            }
             System.out.println("");
         }
     }
 }
-/*
-    public int shoot(int row, int col) {
-        if (row < 0 || row)
-    }
-
-    public int shoot(int row, int col)throw
-
-        IllegalCoordinateException{
-        if(<0)throw new IllegalCoordinat._ eException();
-        return Spielfeld.EMPTY;
-        }
-}
- */
 

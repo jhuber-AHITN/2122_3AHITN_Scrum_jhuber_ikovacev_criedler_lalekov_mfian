@@ -1,10 +1,15 @@
 package com.example._2122_3ahitn_scrum_jhuberikovacev_criedler_lalekov_mfian.model;
 
+/**
+ * Ermöglicht das erzeugen eines Spiel Objekts mit einem Spieler array
+ * Zusätzlich wird noch gesoeichert welcher Spieler am Zug und welcher nicht am Zug ist
+ */
+
 public class Spiel {
     protected Spieler[] spieler;
     protected short spielerAmZug;
     protected short spielerNichtAmZug;
-    protected boolean sieg;
+   // protected boolean sieg;
     protected boolean started;
 
     public Spiel(Spieler p1, Spieler p2) {
@@ -13,7 +18,6 @@ public class Spiel {
         this.spieler[1] = p2;
         this.spielerAmZug = 0;
         this.spielerNichtAmZug = 1;
-        this.sieg = false;
         this.started = false;
     }
 
@@ -37,9 +41,6 @@ public class Spiel {
         this.started = started;
     }
 
-    public void setSieg(boolean sieg) {
-        this.sieg = sieg;
-    }
 
     public void switchPlayer() {
         short newCurrentPlayer = this.spielerNichtAmZug;
