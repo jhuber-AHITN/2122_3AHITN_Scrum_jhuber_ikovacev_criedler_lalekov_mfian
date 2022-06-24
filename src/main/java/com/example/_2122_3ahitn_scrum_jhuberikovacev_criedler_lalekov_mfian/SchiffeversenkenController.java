@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -31,6 +32,8 @@ public class SchiffeversenkenController {
     protected int roundCounterInt = 0;
     protected boolean secondplayer = false;
 
+    @FXML
+    public HBox hBoxForplayfield;
     @FXML
     public Label currentdirection;
     @FXML
@@ -61,10 +64,7 @@ public class SchiffeversenkenController {
      */
     public void setSp(Spiel spiel) {
         this.sp = spiel;
-        p1label.setText(sp.getSpieler()[0].getName());
-        p2label.setText(sp.getSpieler()[1].getName());
-        p1label.setVisible(false);
-        p2label.setVisible(false);
+
 
 
         sp.getSpieler()[0].getSpielfeld().fillWater();
@@ -284,13 +284,10 @@ public class SchiffeversenkenController {
            }
        }
        if (sp.getSpieler()[sp.getSpielerAmZug()].getSpielfeld().checkWin()){
-           gpP1.setVisible(false);
-           gpP2.setVisible(false);
-
-           p1label.setText("Spieler "+sp.getSpieler()[sp.getSpielerAmZug()].getName()+"hat gewonnen");
-           p2label.setText("Spieler"+sp.getSpieler()[sp.getSpielerAmZug()].getName()+"hat gewonnen");
-           p1label.setVisible(true);
-           p2label.setVisible(true);
+           hBoxForplayfield.setVisible(false);
+           HelloController.action.setLabel(labelForP1,"");
+           HelloController.action.setLabel(labelForP2,"");
+           HelloController.action.setLabel(roundCounter,sp.getSpieler()[sp.getSpielerAmZug()].getName()+" hat gewonnen");
 
            // set text in label to "Player sp.getSpieler()[sp.getSpielerAmZug()] won"
        }
